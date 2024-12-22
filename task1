@@ -1,0 +1,14 @@
+.data 
+value1: .string "Equal\n"
+value2: .string "Not Equal\n"
+
+.text
+li x5 5
+li x6 10
+bne x5 x6 else
+la a1 value1
+else:
+la a1 value2
+end:
+li a0 4
+ecall

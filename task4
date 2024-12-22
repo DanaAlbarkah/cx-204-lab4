@@ -1,0 +1,28 @@
+.data
+result: .word 0
+a: .word 5
+b: .word 6
+
+.text
+start:
+    lw t0, a
+    lw t1, b
+    li t2, 0
+
+loop:
+    andi t3, t1, 1
+    bne t3, x0, add_step
+    j shift_step
+
+add_step:
+    add t2, t2, t0
+
+shift_step:
+    slli t0, t0, 1
+    srli t1, t1, 1
+    bne t1, x0, loop
+
+    la t4, result
+    sw t2, 0(t4)
+    li a0, 10
+    ecall
